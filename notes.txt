@@ -1,0 +1,3 @@
+expiry date
+product picture not mandatory
+gst and cgst sholud be split during final order in the printing
