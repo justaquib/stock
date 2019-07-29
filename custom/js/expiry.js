@@ -1,26 +1,26 @@
 $(document).ready(function() {
 	// order date picker
-	$("#startDate").datepicker();
+	$("#startDate1").datepicker();
 	// order date picker
-	$("#endDate").datepicker();
+	$("#endDate1").datepicker();
 
-	$("#getOrderReportForm").unbind('submit').bind('submit', function() {
+	$("#getExpiryReportForm").unbind('submit').bind('submit', function() {
 		
-		var startDate = $("#startDate").val();
-		var endDate = $("#endDate").val();
+		var startDate = $("#startDate1").val();
+		var endDate = $("#endDate1").val();
 
 		if(startDate == "" || endDate == "") {
 			if(startDate == "") {
-				$("#startDate").closest('.form-group').addClass('has-error');
-				$("#startDate").after('<p class="text-danger">The Start Date is required</p>');
+				$("#startDate1").closest('.form-group').addClass('has-error');
+				$("#startDate1").after('<p class="text-danger">The Start Date is required</p>');
 			} else {
 				$(".form-group").removeClass('has-error');
 				$(".text-danger").remove();
 			}
 
 			if(endDate == "") {
-				$("#endDate").closest('.form-group').addClass('has-error');
-				$("#endDate").after('<p class="text-danger">The End Date is required</p>');
+				$("#endDate1").closest('.form-group').addClass('has-error');
+				$("#endDate1").after('<p class="text-danger">The End Date is required</p>');
 			} else {
 				$(".form-group").removeClass('has-error');
 				$(".text-danger").remove();
@@ -38,7 +38,7 @@ $(document).ready(function() {
 				dataType: 'text',
 				success:function(response) {
 					var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-	        mywindow.document.write('<html><head><title>Order Report Slip</title>');        
+	        mywindow.document.write('<html><head><title>Expiry Report Slip</title>');        
 	        mywindow.document.write('</head><body>');
 	        mywindow.document.write(response);
 	        mywindow.document.write('</body></html>');

@@ -263,7 +263,15 @@
 						    <div class="col-sm-8">
 						      <input type="text" class="form-control" id="editRate" placeholder="Rate" name="editRate" autocomplete="off">
 						    </div>
-			        </div> <!-- /form-group-->	     	        
+			        </div> <!-- /form-group-->	
+							
+					 <div class="form-group">
+			        	<label for="editExpiry" class="col-sm-3 control-label">Expiry: </label>
+			        	<label class="col-sm-1 control-label">: </label>
+						    <div class="col-sm-8">
+						      <input type="date" class="form-control" id="editExpiry" name="editExpiry" autocomplete="off">
+						    </div>
+			        </div> <!-- /form-group-->			
 
 			        <div class="form-group">
 			        	<label for="editBrandName" class="col-sm-3 control-label">Brand Name: </label>
