@@ -2,12 +2,10 @@
 
 require_once 'core.php';
 
-$sql = "SELECT product.product_id, product.product_name, product.product_image, product.brand_id,
- 		product.categories_id, product.quantity, product.rate, product.active, product.status,
- 		brands.brand_name, categories.categories_name,product.exp FROM product
-		INNER JOIN brands ON product.brand_id = brands.brand_id
-		INNER JOIN categories ON product.categories_id = categories.categories_id
-		WHERE product.status = 1";
+$sql = "SELECT  damage_product.damage_id, damage_product.damage_name, damage_product.brand_id, damage_product.categories_id, damage_product.quantity, damage_product.rate, damage_product.active, damage_product.status, brands.brand_name,categories.categories_name,damage_product.units_damaged from damage_product
+		INNER JOIN brands ON damage_product.brand_id= brands.brand_id
+		INNER JOIN categories ON damage_product.categories_id = categories.categories_id
+		WHERE damage_product.status = 1";
 
 $result = $connect->query($sql);
 
@@ -19,7 +17,7 @@ if($result->num_rows > 0) {
  $active = "";
 
  while($row = $result->fetch_array()) {
- 	$productId = $row[0];
+ 	$damageId = $row[0];
  	// active
  	if($row[7] == 1) {
  		// activate member
@@ -35,8 +33,8 @@ if($result->num_rows > 0) {
 	    Action <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu">
-	    <li><a type="button" data-toggle="modal" id="editProductModalBtn" data-target="#editProductModal" onclick="editProduct('.$productId.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
-	    <li><a type="button" data-toggle="modal" data-target="#removeProductModal" id="removeProductModalBtn" onclick="removeProduct('.$productId.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>
+	    <li><a type="button" data-toggle="modal" id="editProductModalBtn" data-target="#editDamageModal" onclick="editDamage('.$damageId.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
+	    <li><a type="button" data-toggle="modal" data-target="#removeProductModal" id="removeDamageModalBtn" onclick="removeDamage('.$damageId.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>
 	  </ul>
 	</div>';
 
@@ -50,16 +48,13 @@ if($result->num_rows > 0) {
 
 	$brand = $row[9];
 	$category = $row[10];
-
-    $exp = date('j-m-Y',strtotime($row[11]));
-  
-
-	$imageUrl = substr($row[2], 3);
-	$productImage = "<img class='img-round' src='".$imageUrl."' style='height:30px; width:50px;'  />";
+    $unitsdamage= $row[11];
+    $imageUrl = substr($row[2], 3);
+	$damageImage = "<img class='img-round' src='".$imageUrl."' style='height:30px; width:50px;'  />";
 
  	$output['data'][] = array(
  		// image
- 		$productImage,
+ 		$damageImage,
  		// product name
  		$row[1],
  		// rate
@@ -73,7 +68,7 @@ if($result->num_rows > 0) {
  		// active
  		$active,
     //exp
-    $exp,
+    
  		// button
  		$button
  		);

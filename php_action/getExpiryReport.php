@@ -4,16 +4,16 @@ require_once 'core.php';
 
 if($_POST) {
 
-	$startDate = $_POST['startDate'];
-	$date = DateTime::createFromFormat('m/d/Y',$startDate);
-	$start_date = $date->format("Y-m-d");
+	$startDate1 = $_POST['startDate1'];
+	$date = DateTime::createFromFormat('m/d/Y',$startDate1);
+	$start_date1 = $date->format("Y-m-d");
 
 
-	$endDate = $_POST['endDate'];
-	$format = DateTime::createFromFormat('m/d/Y',$endDate);
-	$end_date = $format->format("Y-m-d");
+	$endDate1 = $_POST['endDate1'];
+	$format = DateTime::createFromFormat('m/d/Y',$endDate1);
+	$end_date1 = $format->format("Y-m-d");
 
-	$sql = "SELECT * FROM product WHERE exp >= '$start_date' AND exp <= '$end_date' and order_status = 1";
+	$sql = "SELECT * FROM product WHERE exp >= '$start_date1' AND exp <= '$end_date1' and order_status = 1";
 	$query = $connect->query($sql);
 
 	$table = '
@@ -26,8 +26,8 @@ if($_POST) {
 		</tr>
 
 		<tr>';
-		$totalAmount = "";
-		while ($result = $query->fetch_assoc()) {
+		$totalAmount = "0";
+		while ($result = $query) {
 			$table .= '<tr>
 				<td><center>'.$result['exp'].'</center></td>
 				<td><center>'.$result['brand_id'].'</center></td>

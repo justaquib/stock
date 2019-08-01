@@ -78,7 +78,7 @@ if($_POST) {
     <style>
 body  {
   background-image: url("assests/images/hill.jpg");
-
+  background-size: cover;
 }
 </style>
 </head>

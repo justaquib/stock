@@ -6,32 +6,32 @@
 
 		<ol class="breadcrumb">
 		  <li><a href="dashboard.php">Home</a></li>		  
-		  <li class="active">Product</li>
+		  <li class="active">Damage</li>
 		</ol>
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="page-heading"> <i class="glyphicon glyphicon-edit"></i> Manage Product</div>
+				<div class="page-heading"> <i class="glyphicon glyphicon-edit"></i> Manage Damaged Products</div>
 			</div> <!-- /panel-heading -->
 			<div class="panel-body">
 
 				<div class="remove-messages"></div>
 
 				<div class="div-action pull pull-right" style="padding-bottom:20px;">
-					<button class="btn btn-default button1" data-toggle="modal" id="addProductModalBtn" data-target="#addProductModal"> <i class="glyphicon glyphicon-plus-sign"></i> Add Product </button>
+					<button class="btn btn-default button1" data-toggle="modal" id="addDamageModalBtn" data-target="#addDamageModal"> <i class="glyphicon glyphicon-plus-sign"></i> Add Damage Product </button>
 				</div> <!-- /div-action -->				
 				
-				<table class="table" id="manageProductTable">
+				<table class="table" id="manageDamageTable">
 					<thead>
 						<tr>
 							<th style="width:10%;">Photo</th>						
-							<th>Product Name</th>
+							<th>Name</th>
 							<th>Rate</th>							
 							<th>Quantity</th>
 							<th>Brand</th>
 							<th>Category</th>
+							<th>Units Damaged</th>
 							<th>Status</th>
-							<th>Expiry Date</th>
 							<th style="width:15%;">Options</th>
 						</tr>
 					</thead>
@@ -45,50 +45,39 @@
 
 
 <!-- add product -->
-<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="addDamageModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
 
-    	<form class="form-horizontal" id="submitProductForm" action="php_action/createProduct.php" method="POST" enctype="multipart/form-data">
+    	<form class="form-horizontal" id="submitDamageForm" action="php_action/createDamage.php" method="POST" enctype="multipart/form-data">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title"><i class="fa fa-plus"></i> Add Product</h4>
+	        <h4 class="modal-title"><i class="fa fa-plus"></i> Add Damaged Product</h4>
 	      </div>
 
 	      <div class="modal-body" style="max-height:450px; overflow:auto;">
 
-	      	<div id="add-product-messages"></div>
+	      	<div id="add-damage-messages"></div>
 		
-		<div class="form-group">
-	        	<label for="productImage" class="col-sm-3 control-label">Product Expiry: </label>
-	        	<label class="col-sm-1 control-label">: </label>
-				    <div class="col-sm-8">
-					    <!-- the avatar markup -->
-					    <div class="kv-avatar center-block">
-					        <input type="date" class="form-control" name="exp"  style="width:auto;"/>
-					    </div>
-				    </div>
-	        </div> <!-- /form-group-->
-		      
+		
 	      	<div class="form-group">
-	        	<label for="productImage" class="col-sm-3 control-label">Product Image: </label>
-	        	<label class="col-sm-1 control-label">: </label>
+	        	<label for="damageImage" class="col-sm-3 control-label">Damage Image: </label>
+	        	<label class="col-sm-1 control-label">:</label>
 				    <div class="col-sm-8">
 					    <!-- the avatar markup -->
-							<div id="kv-avatar-errors-1" class="center-block" style="display:none;"></div>	
-                        
-					    <div class="kv-avatar center-block">					        
-					        <input type="file" class="form-control" id="productImage" placeholder="Product Name" name="productImage" class="file-loading" style="width:auto;"/>
+							<div id="kv-avatar-errors-1" class="center-block" style="display:none;"></div>							
+					    <div class="kv-avatar center-block">					       
+							<input type="file" class="form-control" id="damageImage" placeholder="Damaged Image" name="damageImage" class="file-loading" style="width:auto;"/>
 					    </div>
 				      
 				    </div>
 	        </div> <!-- /form-group-->	     	           	       
 
 	        <div class="form-group">
-	        	<label for="productName" class="col-sm-3 control-label">Product Name: </label>
+	        	<label for="damageName" class="col-sm-3 control-label">Name: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="productName" placeholder="Product Name" name="productName" autocomplete="off">
+				      <input type="text" class="form-control" id="damageName" placeholder="Damaged Product Name" name="damageName" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->	    
 
@@ -96,7 +85,7 @@
 	        	<label for="quantity" class="col-sm-3 control-label">Quantity: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="quantity" placeholder="Quantity" name="quantity" autocomplete="off">
+				      <input type="text" class="form-control" id="quantity" placeholder="quantity" name="quantity" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->	        	 
 
@@ -104,7 +93,7 @@
 	        	<label for="rate" class="col-sm-3 control-label">Rate: </label>
 	        	<label class="col-sm-1 control-label">:</label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="rate" placeholder="Rate" name="rate" autocomplete="off">
+				      <input type="text" class="form-control" id="rate" placeholder="rate" name="rate" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->	     	        
 
@@ -131,7 +120,7 @@
 	        	<label for="categoryName" class="col-sm-3 control-label">Category Name: </label>
 	        	<label class="col-sm-1 control-label">:</label>
 				    <div class="col-sm-8">
-				      <select type="text" class="form-control" id="categoryName" placeholder="Product Name" name="categoryName" >
+				      <select type="text" class="form-control" id="categoryName" placeholder="Category Name" name="categoryName" >
 				      	<option value="">~~SELECT~~</option>
 				      	<?php 
 				      	$sql = "SELECT categories_id, categories_name, categories_active, categories_status FROM categories WHERE categories_status = 1 AND categories_active = 1";
@@ -145,12 +134,18 @@
 				      </select>
 				    </div>
 	        </div> <!-- /form-group-->					        	         	       
-
-	        <div class="form-group">
-	        	<label for="productStatus" class="col-sm-3 control-label">Status: </label>
+           <div class="form-group">
+	        	<label for="unitsDamaged" class="col-sm-3 control-label">Units Damaged: </label>
 	        	<label class="col-sm-1 control-label">:</label>
 				    <div class="col-sm-8">
-				      <select class="form-control" id="productStatus" name="productStatus">
+				      <input type="text" class="form-control" id="unitsDamaged" placeholder="Units Damaged" name="unitsDamaged" autocomplete="off">
+				    </div>
+	        </div> <!-- /form-group-->	   
+	        <div class="form-group">
+	        	<label for="damageStatus" class="col-sm-3 control-label">Status: </label>
+	        	<label class="col-sm-1 control-label">:</label>
+				    <div class="col-sm-8">
+				      <select class="form-control" id="damageStatus" name="damageStatus">
 				      	<option value="">~~SELECT~~</option>
 				      	<option value="1">Available</option>
 				      	<option value="2">Not Available</option>
@@ -162,7 +157,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createProductBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
+	        <button type="submit" class="btn btn-primary" id="createDamageBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
 	      </div> <!-- /modal-footer -->	      
      	</form> <!-- /.form -->	     
     </div> <!-- /modal-content -->    
@@ -200,7 +195,7 @@
 
 				  	
 				    <div role="tabpanel" class="tab-pane active" id="photo">
-				    	<form action="php_action/editProductImage.php" method="POST" id="updateProductImageForm" class="form-horizontal" enctype="multipart/form-data">
+				    	<form action="php_action/editDamageImage.php" method="POST" id="updateProductImageForm" class="form-horizontal" enctype="multipart/form-data">
 
 				    	<br />
 				    	<div id="edit-productPhoto-messages"></div>
@@ -370,6 +365,6 @@
 <!-- /categories brand -->
 
 
-<script src="custom/js/product.js"></script>
+<script src="custom/js/damage.js"></script>
 
 <?php require_once 'includes/footer.php'; ?>

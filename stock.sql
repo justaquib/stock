@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2019 at 10:37 PM
--- Server version: 10.1.39-MariaDB
--- PHP Version: 7.3.5
+-- Generation Time: Aug 01, 2019 at 07:59 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `stocks`
+-- Database: `stock`
 --
 
 -- --------------------------------------------------------
@@ -80,6 +80,32 @@ INSERT INTO `categories` (`categories_id`, `categories_name`, `categories_active
 (6, 'Sport wear', 1, 2),
 (7, 'Casual wear', 1, 1),
 (8, 'Sports ', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `damage_product`
+--
+
+CREATE TABLE `damage_product` (
+  `damage_id` int(11) NOT NULL,
+  `damage_image` varchar(255) NOT NULL,
+  `damage_name` text NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `categories_id` int(11) NOT NULL,
+  `quantity` varchar(255) NOT NULL,
+  `rate` varchar(255) NOT NULL,
+  `active` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `units_damaged` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `damage_product`
+--
+
+INSERT INTO `damage_product` (`damage_id`, `damage_image`, `damage_name`, `brand_id`, `categories_id`, `quantity`, `rate`, `active`, `status`, `units_damaged`) VALUES
+(1, 'Screenshot (1).png', 'RED', 1, 1, '123', '123', 1, 2, 12);
 
 -- --------------------------------------------------------
 
@@ -162,7 +188,7 @@ CREATE TABLE `product` (
   `rate` varchar(255) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
-  `exp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `exp` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -170,15 +196,18 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_image`, `brand_id`, `categories_id`, `quantity`, `rate`, `active`, `status`, `exp`) VALUES
-(1, 'Half pant', '../assests/images/stock/2847957892502c7200.jpg', 1, 2, '19', '1500', 2, 2, '0000-00-00 00:00:00'),
-(2, 'T-Shirt', '../assests/images/stock/163965789252551575.jpg', 2, 2, '9', '1200', 2, 2, '0000-00-00 00:00:00'),
-(3, 'Half Pant', '../assests/images/stock/13274578927924974b.jpg', 5, 3, '18', '1200', 2, 2, '0000-00-00 00:00:00'),
-(4, 'T-Shirt', '../assests/images/stock/12299578927ace94c5.jpg', 6, 3, '29', '1000', 2, 2, '0000-00-00 00:00:00'),
-(5, 'Half Pant', '../assests/images/stock/24937578929c13532e.jpg', 8, 5, '17', '1200', 2, 2, '0000-00-00 00:00:00'),
-(6, 'Polo T-Shirt', '../assests/images/stock/10222578929f733dbf.jpg', 9, 5, '29', '1200', 2, 2, '0000-00-00 00:00:00'),
-(7, 'Half Pant', '../assests/images/stock/1770257893463579bf.jpg', 11, 7, '28', '1200', 1, 1, '2019-06-17 18:30:00'),
-(8, 'Polo T-shirt', '../assests/images/stock/136715789347d1aea6.jpg', 12, 7, '9', '1200', 1, 1, '2019-06-26 18:30:00'),
-(9, 'T shirt', '../assests/images/stock/15914871985d0a9bd170d1f.jpg', 12, 7, '200', '299', 1, 1, '2019-06-26 18:30:00');
+(2, 'T-Shirt', '../assests/images/stock/163965789252551575.jpg', 2, 2, '9', '1200', 2, 2, '0000-00-00'),
+(4, 'T-Shirt', '../assests/images/stock/12299578927ace94c5.jpg', 6, 3, '29', '1000', 2, 2, '0000-00-00'),
+(5, 'Half Pant', '../assests/images/stock/24937578929c13532e.jpg', 8, 5, '17', '1200', 2, 2, '0000-00-00'),
+(6, 'Polo T-Shirt', '../assests/images/stock/10222578929f733dbf.jpg', 9, 5, '29', '1200', 2, 2, '0000-00-00'),
+(7, 'Half Pant', '../assests/images/stock/1770257893463579bf.jpg', 11, 7, '28', '1200', 1, 1, '2019-07-02'),
+(8, 'Polo T-shirt', '../assests/images/stock/136715789347d1aea6.jpg', 12, 7, '9', '1200', 2, 2, '2019-06-27'),
+(9, 'T shirt', '../assests/images/stock/31255d3fdfa358efe.jpg', 12, 7, '200', '299', 1, 1, '2019-07-04'),
+(10, 'Facebook', '../assests/images/stock/224175d3fdfb65c572.jpg', 11, 7, '2', '20', 1, 1, '2019-06-19'),
+(11, 'Face', '../assests/images/stock/199865d3fdfbfa77b9.jpg', 11, 7, '2', '500', 2, 1, '2019-06-26'),
+(12, 'Face', '../assests/images/stock/271075d3fdfc8b6d17.jpg', 11, 8, '25', '300', 1, 1, '2019-06-25'),
+(13, 'FEA', '../assests/images/stock/4460446015d42781ab8caf.png', 11, 7, '12', '12', 1, 1, '2019-08-13'),
+(14, 'RE', '../assests/images/stock/19089199875d42784db0861.png', 11, 7, '12', '12', 1, 1, '2021-09-03');
 
 -- --------------------------------------------------------
 
@@ -198,7 +227,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`) VALUES
-(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', ''),
+(1, 'admin', '123', ''),
 (2, 'superadmin', 'e3afed0047b08059d0fada10f400c1e5', '');
 
 --
@@ -216,6 +245,12 @@ ALTER TABLE `brands`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`categories_id`);
+
+--
+-- Indexes for table `damage_product`
+--
+ALTER TABLE `damage_product`
+  ADD PRIMARY KEY (`damage_id`);
 
 --
 -- Indexes for table `orders`
@@ -258,6 +293,12 @@ ALTER TABLE `categories`
   MODIFY `categories_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `damage_product`
+--
+ALTER TABLE `damage_product`
+  MODIFY `damage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
@@ -273,7 +314,7 @@ ALTER TABLE `order_item`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`

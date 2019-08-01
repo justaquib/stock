@@ -1,25 +1,25 @@
-var manageProductTable;
+var manageDamageTable;
 
 $(document).ready(function() {
 	// top nav bar 
-	$('#navProduct').addClass('active');
-	// manage product data table
-	manageProductTable = $('#manageProductTable').DataTable({
-		'ajax': 'php_action/fetchProduct.php',
+	$('#navDamage').addClass('active');
+	// manage damage data table
+	manageDamageTable = $('#manageDamageTable').DataTable({
+		'ajax': 'php_action/fetchDamage.php',
 		'order': []
 	});
 
-	// add product modal btn clicked
-	$("#addProductModalBtn").unbind('click').bind('click', function() {
-		// // product form reset
-		$("#submitProductForm")[0].reset();		
+	// add damage modal btn clicked
+	$("#addDamageModalBtn").unbind('click').bind('click', function() {
+		// // damage form reset
+		$("#submitDamageForm")[0].reset();		
 
 		// remove text-error 
 		$(".text-danger").remove();
 		// remove from-group error
 		$(".form-group").removeClass('has-error').removeClass('has-success');
 
-		$("#productImage").fileinput({
+		$("#damageImage").fileinput({
 	      overwriteInitial: true,
 		    maxFileSize: 2500,
 		    showClose: false,
@@ -37,35 +37,36 @@ $(document).ready(function() {
 			});   
 
 		// submit product form
-		$("#submitProductForm").unbind('submit').bind('submit', function() {
+		$("#submitDamageForm").unbind('submit').bind('submit', function() {
 
 			// form validation
-			var productImage = $("#productImage").val();
-			var productName = $("#productName").val();
+			var damageImage = $("#damageImage").val();
+			var damageName = $("#damageName").val();
 			var quantity = $("#quantity").val();
 			var rate = $("#rate").val();
-			var brandName = $("#brandName").val();
-			var categoryName = $("#categoryName").val();
-			var productStatus = $("#productStatus").val();
+			var brandName= $("#brandName").val();
+			var categoryName = $("#brandName").val();
+            var unitsDamaged = $("#unitsDamaged").val();
+			var damageStatus = $("#damageStatus").val();
 	
-			if(productImage == "") {
-				$("#productImage").closest('.center-block').after('<p class="text-danger">Product Image field is required</p>');
-				$('#productImage').closest('.form-group').addClass('has-error');
+			if(damageImage == "") {
+				$("#damageImage").closest('.center-block').after('<p class="text-danger">Image field is required</p>');
+				$('#damageImage').closest('.form-group').addClass('has-error');
 			}	else {
 				// remov error text field
-				$("#productImage").find('.text-danger').remove();
+				$("#damageImage").find('.text-danger').remove();
 				// success out for form 
-				$("#productImage").closest('.form-group').addClass('has-success');	  	
+				$("#damageImage").closest('.form-group').addClass('has-success');	  	
 			}	// /else
 
-			if(productName == "") {
-				$("#productName").after('<p class="text-danger">Product Name field is required</p>');
-				$('#productName').closest('.form-group').addClass('has-error');
+			if(damageName == "") {
+				$("#damageName").after('<p class="text-danger">Damage Name field is required</p>');
+				$('#damageName').closest('.form-group').addClass('has-error');
 			}	else {
 				// remov error text field
-				$("#productName").find('.text-danger').remove();
+				$("#damageName").find('.text-danger').remove();
 				// success out for form 
-				$("#productName").closest('.form-group').addClass('has-success');	  	
+				$("#DamageName").closest('.form-group').addClass('has-success');	  	
 			}	// /else
 
 			if(quantity == "") {
@@ -107,20 +108,30 @@ $(document).ready(function() {
 				// success out for form 
 				$("#categoryName").closest('.form-group').addClass('has-success');	  	
 			}	// /else
-
-			if(productStatus == "") {
-				$("#productStatus").after('<p class="text-danger">Product Status field is required</p>');
-				$('#productStatus').closest('.form-group').addClass('has-error');
+            
+            if(unitsDamaged == "") {
+				$("#unitsDamaged").after('<p class="text-danger">Unit field is required</p>');
+				$('#unitsDamaged').closest('.form-group').addClass('has-error');
 			}	else {
 				// remov error text field
-				$("#productStatus").find('.text-danger').remove();
+				$("#unitsDamaged").find('.text-danger').remove();
 				// success out for form 
-				$("#productStatus").closest('.form-group').addClass('has-success');	  	
+				$("#unitsDamaged").closest('.form-group').addClass('has-success');	  	
 			}	// /else
 
-			if(productImage && productName && quantity && rate && brandName && categoryName && productStatus) {
+			if(damageStatus == "") {
+				$("#damageStatus").after('<p class="text-danger">Product Status field is required</p>');
+				$('#damageStatus').closest('.form-group').addClass('has-error');
+			}	else {
+				// remov error text field
+				$("#damageStatus").find('.text-danger').remove();
+				// success out for form 
+				$("#damageStatus").closest('.form-group').addClass('has-success');	  	
+			}	// /else
+
+			if(damageImage && damageName && quantity && rate && brandName && categoryName && unitsDamaged && damageStatus) {
 				// submit loading button
-				$("#createProductBtn").button('loading');
+				$("#createDamageBtn").button('loading');
 
 				var form = $(this);
 				var formData = new FormData(this);
@@ -137,14 +148,14 @@ $(document).ready(function() {
 
 						if(response.success == true) {
 							// submit loading button
-							$("#createProductBtn").button('reset');
+							$("#createDamageBtn").button('reset');
 							
-							$("#submitProductForm")[0].reset();
+							$("#submitDamageForm")[0].reset();
 
 							$("html, body, div.modal, div.modal-content, div.modal-body").animate({scrollTop: '0'}, 100);
 																	
 							// shows a successful message after operation
-							$('#add-product-messages').html('<div class="alert alert-success">'+
+							$('#add-damage-messages').html('<div class="alert alert-success">'+
 		            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
 		            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
 		          '</div>');
@@ -156,8 +167,8 @@ $(document).ready(function() {
 								});
 							}); // /.alert
 
-		          // reload the manage student table
-							manageProductTable.ajax.reload(null, true);
+		          // reload the manage damage table
+							manageDamageTable.ajax.reload(null, true);
 
 							// remove text-error 
 							$(".text-danger").remove();
@@ -180,10 +191,10 @@ $(document).ready(function() {
 
 }); // document.ready fucntion
 
-function editProduct(productId = null) {
+function editDamage(damageId = null) {
 
 	if(productId) {
-		$("#productId").remove();		
+		$("#damageId").remove();		
 		// remove text-error 
 		$(".text-danger").remove();
 		// remove from-group error
@@ -194,9 +205,9 @@ function editProduct(productId = null) {
 		$('.div-result').addClass('div-hide');
 
 		$.ajax({
-			url: 'php_action/fetchSelectedProduct.php',
+			url: 'php_action/fetchSelectedDamageProduct.php',
 			type: 'post',
-			data: {productId: productId},
+			data: {damageId: damageId},
 			dataType: 'json',
 			success:function(response) {		
 			// alert(response.product_image);
@@ -205,9 +216,9 @@ function editProduct(productId = null) {
 				// modal div
 				$('.div-result').removeClass('div-hide');				
 
-				$("#getProductImage").attr('src', 'stock/'+response.product_image);
+				$("#getDamageImage").attr('src', 'stock/'+response.product_image);
 
-				$("#editProductImage").fileinput({		      
+				$("#editgetDamageImage").fileinput({		      
 				});  
 
 				// $("#editProductImage").fileinput({
@@ -228,8 +239,8 @@ function editProduct(productId = null) {
 				// });  
 
 				// product id 
-				$(".editProductFooter").append('<input type="hidden" name="productId" id="productId" value="'+response.product_id+'" />');				
-				$(".editProductPhotoFooter").append('<input type="hidden" name="productId" id="productId" value="'+response.product_id+'" />');				
+				$(".editDamageFooter").append('<input type="hidden" name="damageId" id="damageId" value="'+response.damage_id+'" />');				
+				$(".editProductPhotoFooter").append('<input type="hidden" name="productId" id="productId" value="'+response.damage_id+'" />');				
 				
 				// product name
 				$("#editProductName").val(response.product_name);
@@ -243,8 +254,6 @@ function editProduct(productId = null) {
 				$("#editCategoryName").val(response.categories_id);
 				// status
 				$("#editProductStatus").val(response.active);
-				//expiry
-				$("#editExpiry").val(response.exp);
 
 				// update the product data function
 				$("#editProductForm").unbind('submit').bind('submit', function() {
@@ -257,7 +266,7 @@ function editProduct(productId = null) {
 					var brandName = $("#editBrandName").val();
 					var categoryName = $("#editCategoryName").val();
 					var productStatus = $("#editProductStatus").val();
-					var productExpiry = $("#editExpiry").val();			
+								
 
 					if(productName == "") {
 						$("#editProductName").after('<p class="text-danger">Product Name field is required</p>');
@@ -319,16 +328,7 @@ function editProduct(productId = null) {
 						$("#editProductStatus").closest('.form-group').addClass('has-success');	  	
 					}	// /else					
 
-					if(productExpiry == "") {
-						$("#editExpiry").after('<p class="text-danger">Product Expiry field is required</p>');
-						$('#editExpiry').closest('.form-group').addClass('has-error');
-					}	else {
-						// remov error text field
-						$("#editExpiry").find('.text-danger').remove();
-						// success out for form 
-						$("#editExpiry").closest('.form-group').addClass('has-success');	  	
-					}
-					if(productName && quantity && rate && brandName && categoryName && productStatus,productExpiry) {
+					if(productName && quantity && rate && brandName && categoryName && productStatus) {
 						// submit loading button
 						$("#editProductBtn").button('loading');
 
