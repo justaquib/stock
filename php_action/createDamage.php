@@ -22,7 +22,7 @@ if($_POST) {
 		if(is_uploaded_file($_FILES['damageImage']['tmp_name'])) {
 			if(move_uploaded_file($_FILES['damageImage']['tmp_name'], $url)) {
 
-				$sql = "INSERT INTO `damage_product` (`damage_name`, `damage_image`, `brand_id`, `categories_id`, `quantity`, `rate`,`units_damaged`,'active','status')
+				$sql = "INSERT INTO `damage_product` (`damage_name`, `damage_image`, `brand_id`, `categories_id`, `quantity`, `rate`,`units_damaged`,`active`,`status`)
 				VALUES ('$damageName', '$url', '$brandName', '$categoryName', '$quantity', '$rate','$unitsdamaged','$damageStatus', 1,)";
 
 				if($connect->query($sql) === TRUE) {
